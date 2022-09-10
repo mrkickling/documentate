@@ -1,0 +1,19 @@
+<div class="function">
+    <span class="function-name">{{function.name}}
+        ({% if function.args %}
+            {% for arg in function.args %}
+              {{arg.arg}}
+              {% if not loop.last %}
+              , 
+              {% endif %}
+            {% endfor %}
+        {% endif %})
+         ➝ 
+        {% if function.returns %}
+            {{ function.returns.id }}
+        {% else %}
+            ?
+        {% endif %}
+
+        </span>
+</div>

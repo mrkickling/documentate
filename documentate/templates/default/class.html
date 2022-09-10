@@ -1,0 +1,17 @@
+<div class="class">
+      <h2>
+            class {{class.name}}
+            {% if class.bases %}
+                  ({% for base in class.bases %}
+                        {{base.id}}
+                        {% if not loop.last %}
+                        , 
+                        {% endif %}
+                  {% endfor %})
+            {% endif %}
+      </h2>
+      {% for function in class.methods %}
+            {% include 'function.html' %}
+      {% endfor %}
+
+</div>

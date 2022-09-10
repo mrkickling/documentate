@@ -7,25 +7,25 @@ class Node:
     def to_markdown(self, depth) -> str:
         pass
 
-    def print(self):
+    def print(self) -> None:
         print(self.to_markdown(1))
 
 
 class Module(Node):
-    def __init__(self, name, node):
+    def __init__(self, name, node) -> None:
         self.name = name
         self.globals = []
         self.classes = []
         self.docstring = ast.get_docstring(node)
         self.get_module_body(node.body)
 
-    def get_module_body(self, body):
+    def get_module_body(self, body) -> None:
         for node in body:
             if isinstance(node, ast.ClassDef):
                 c = Class(node)
                 self.classes.append(c)
 
-    def to_markdown(self, depth):
+    def to_markdown(self, depth) -> str:
         pre = "#" * depth
         result = ""
         result += pre + " Module " + self.name + "\n" * 2
@@ -36,7 +36,7 @@ class Module(Node):
 
 
 class Class(Node):
-    def __init__(self, node):
+    def __init__(self, node) -> None:
         self.name = node.name
         self.docstring = ast.get_docstring(node)
         self.bases = node.bases
@@ -45,7 +45,7 @@ class Class(Node):
         self.class_variables = []
         self.get_class_body(node.body)
 
-    def get_class_body(self, body):
+    def get_class_body(self, body) -> None:
         for node in body:
             if isinstance(node, ast.FunctionDef):
                 f = Function(node)
@@ -53,7 +53,7 @@ class Class(Node):
             if isinstance(node, ast.Assign):
                 self.class_variables.append(node)
 
-    def to_markdown(self, depth):
+    def to_markdown(self, depth) -> str:
         pre = "#" * depth
         result = "\n"
         result += pre + " Class " + self.name + "\n"
@@ -68,13 +68,13 @@ class Class(Node):
 
 
 class Function(Node):
-    def __init__(self, node):
+    def __init__(self, node) -> None:
         self.name = node.name
         self.args = node.args.args
         self.returns = node.returns
         self.docstring = ast.get_docstring(node)
 
-    def to_markdown(self, depth):
+    def to_markdown(self, depth) -> str:
         pre = "#" * depth
         result = ""
         result += pre + " Function: " + self.name + "\n\n"

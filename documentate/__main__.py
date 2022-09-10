@@ -1,6 +1,6 @@
 import argparse
 import sys
-from parser import ProgramParser
+from handler import DocumentateHandler
 
 arg_parser = argparse.ArgumentParser(
     prog="documentate", description="Generate documentation from python projects."
@@ -23,5 +23,5 @@ if __name__ == "__main__":
     in_dir = args.input
     out_dir = args.output
 
-    parser = ProgramParser(in_dir, out_dir)
+    parser = DocumentateHandler(in_dir, out_dir)
     parser.generate_documentation()

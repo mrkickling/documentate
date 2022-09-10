@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+.nav {
+    width: 30%;
+    float: left;
+}
+
+.nav ul li {
+    list-style: none;
+}
+
+.nav ul li a {
+    color:black;
+}
+
+main {
+    width: 70%;
+    float:left;
+}
