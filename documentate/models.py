@@ -1,8 +1,16 @@
+"""
+models.py contains all classes that are used to store all parts of a python module
+"""
+
 from abc import abstractmethod
 import ast
 
 
 class Node:
+    """
+    An abstract class used for all parts of a python module
+    """
+
     @abstractmethod
     def to_markdown(self, depth) -> str:
         pass
@@ -12,6 +20,11 @@ class Node:
 
 
 class Module(Node):
+    """
+    A Module is the same as a file in python. This class represents a module
+    and includes its name, its docstring, its variables, functions and classes
+    """
+
     def __init__(self, name, node) -> None:
         self.name = name
         self.globals = []
@@ -36,6 +49,11 @@ class Module(Node):
 
 
 class Class(Node):
+    """
+    This class represents a class in the python language and contains
+    a name, bases (inheritance), methods and docstring.
+    """
+
     def __init__(self, node) -> None:
         self.name = node.name
         self.docstring = ast.get_docstring(node)
@@ -68,6 +86,12 @@ class Class(Node):
 
 
 class Function(Node):
+    """
+    This class is used to represent a python function or method
+    (which is just a function in a class in python). It has a name,
+    potentially arguments, a docstring and return type.
+    """
+
     def __init__(self, node) -> None:
         self.name = node.name
         self.args = node.args.args
