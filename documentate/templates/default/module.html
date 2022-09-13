@@ -7,17 +7,18 @@
     {% set curr_module = module %}
 </head>
 <body>
-    {% include 'sidebar.html' %}
-    <main>
-        <h1>{{module.name}}</h1>
-        {% if module.docstring %}
-            {{module.docstring}}
-        {% endif %}
-        {% for class in module.classes %}
-            {% include 'class.html' %}   
-        {% endfor %}
-    </main>
-
+    <div class="container">
+        {% include 'sidebar.html' %}
+        <main>
+            <h1>{{module.name}}</h1>
+            {% if module.docstring %}
+                {{module.docstring}}
+            {% endif %}
+            {% for class in module.classes %}
+                {% include 'class.html' %}   
+            {% endfor %}
+        </main>
+    </div>
     <style>
         {% include 'style.css' %}
     </style>

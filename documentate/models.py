@@ -8,7 +8,8 @@ import ast
 
 class Node:
     """
-    An abstract class used for all parts of a python module
+    An abstract class used for all parts of a python program (like in ast) but than can
+    more easily be used in this project to produce human readable documentation.
     """
 
     @abstractmethod

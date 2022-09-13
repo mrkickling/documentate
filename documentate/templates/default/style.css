@@ -12,6 +12,21 @@
 }
 
 main {
-    width: 70%;
+    width: 50%;
     float:left;
+}
+
+.container {
+    margin-bottom: 50px;
+    display: block;
+    overflow: auto;
+}
+
+.class {
+    border-left: 4px solid grey;
+    padding-left: 10px;
+}
+
+.function-name {
+    font-family: 'Courier New', Courier, monospace
 }
