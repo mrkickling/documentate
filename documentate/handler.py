@@ -30,16 +30,34 @@ class DocumentateHandler:
     def generate_documentation(self):
         """Generate HTML documentation using Jinja2"""
         module_template = self.env.get_template("module.html")
+        class_template = self.env.get_template("class.html")
         index_template = self.env.get_template("index.html")
+
         if not os.path.exists(self.out_dir):
             os.mkdir(self.out_dir)
 
         # Write each module to a HTML file
         for module in self.modules:
-            filepath = os.path.join(self.out_dir, module.name + ".html")
+            module_folder_dir = os.path.join(self.out_dir, module.name)
+            classes_folder_dir = os.path.join(module_folder_dir, "classes")
+
+            # Create subfolders to store HTML files in a reasonable way
+            if not os.path.exists(module_folder_dir):
+                os.mkdir(module_folder_dir)
+                os.mkdir(classes_folder_dir)
+
+            # Module page named index for better navigation
+            filepath = os.path.join(module_folder_dir, "index.html")
             with open(filepath, "w") as f:
                 # Have to send the modules as well for navigation to work
                 f.write(module_template.render(module=module, modules=self.modules))
+
+            # Write the classes to subfolder
+            for c in module.classes:
+                filepath = os.path.join(classes_folder_dir, c.name + ".html")
+                with open(filepath, "w") as f:
+                    # Have to send the modules as well for navigation to work
+                    f.write(class_template.render(module=module, c=c))
 
         # Write index.html file
         filepath = os.path.join(self.out_dir, "index.html")
