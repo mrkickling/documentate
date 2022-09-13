@@ -1,4 +1,4 @@
-<div class="class">
+<div id="{{class.name}}" class="class">
       <h2>
             class {{class.name}}
             {% if class.bases %}
@@ -10,6 +10,11 @@
                   {% endfor %})
             {% endif %}
       </h2>
+
+      <p>
+            {{class.docstring}}
+      </p>
+
       {% for variable in class.class_variables %}
             {{variable.name}}
             : {{variable.type}}

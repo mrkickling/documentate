@@ -7,10 +7,6 @@
     float: left;
 }
 
-.nav ul li {
-    list-style: none;
-}
-
 .nav ul li a {
     color:black;
 }
