@@ -1,5 +1,5 @@
 # documentate
-A python package that generates documentation for python packages and modules
+A python package that generates documentation for python packages and modules using ast and Jinja.
 
 WORK IN PROGRESS, NOT WORKING AS INTENDED YET.
 
