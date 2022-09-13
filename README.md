@@ -1,6 +1,8 @@
 # documentate
 A python package that generates documentation for python packages and modules
 
+WORK IN PROGRESS, NOT WORKING AS INTENDED YET.
+
 # Installation
 
 ```pip install -r requirements.txt```
