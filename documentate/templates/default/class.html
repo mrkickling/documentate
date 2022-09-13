@@ -10,6 +10,11 @@
                   {% endfor %})
             {% endif %}
       </h2>
+      {% for variable in class.class_variables %}
+            {{variable.name}}
+            : {{variable.type}}
+      {% endfor %}
+      
       {% for function in class.methods %}
             {% include 'function.html' %}
       {% endfor %}

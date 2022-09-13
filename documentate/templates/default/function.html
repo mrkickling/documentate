@@ -2,18 +2,13 @@
     <span class="function-name">{{function.name}}
         ({% if function.args %}
             {% for arg in function.args %}
-              {{arg.arg}}
+              {{arg.name}} {% if arg.type %}: {{arg.type}} {% endif %}
               {% if not loop.last %}
               , 
               {% endif %}
             {% endfor %}
         {% endif %})
          ➝ 
-        {% if function.returns %}
-            {{ function.returns.id }}
-        {% else %}
-            ?
-        {% endif %}
-
+        {{ function.returns.type }}
         </span>
 </div>

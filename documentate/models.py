@@ -54,11 +54,19 @@ class Class(Node):
     a name, bases (inheritance), methods and docstring.
     """
 
-    def __init__(self, node) -> None:
+    class ClassVariable:
+        """
+        This class represents a class variable and is only used within Class
+        """
+
+        def __init__(self, node: ast.AnnAssign) -> None:
+            self.name = node.target.id
+            self.type = node.annotation.id
+
+    def __init__(self, node: ast.ClassDef) -> None:
         self.name = node.name
         self.docstring = ast.get_docstring(node)
         self.bases = node.bases
-        self.attributes = []
         self.methods = []
         self.class_variables = []
         self.get_class_body(node.body)
@@ -68,8 +76,9 @@ class Class(Node):
             if isinstance(node, ast.FunctionDef):
                 f = Function(node)
                 self.methods.append(f)
-            if isinstance(node, ast.Assign):
-                self.class_variables.append(node)
+            if isinstance(node, ast.AnnAssign):
+                class_variable = self.ClassVariable(node)
+                self.class_variables.append(class_variable)
 
     def to_markdown(self, depth) -> str:
         pre = "#" * depth
@@ -92,11 +101,42 @@ class Function(Node):
     potentially arguments, a docstring and return type.
     """
 
-    def __init__(self, node) -> None:
+    class FunctionArgument:
+        """
+        This class represents a function or method argument, annotaded or not
+        """
+
+        def __init__(self, node: ast.arg) -> None:
+            self.name = node.arg
+            if node.annotation:
+                self.type = node.annotation.value.id
+            else:
+                self.type = None
+
+    class FunctionReturn:
+        """
+        This class represents a functions or methods return value
+        """
+
+        def __init__(self, ret) -> None:
+            if type(ret) == ast.Name:
+                self.type = ret.id
+            elif type(ret) == ast.NameConstant:
+                self.type = ret.value
+            else:
+                self.type = "None"
+
+    def __init__(self, node: ast.FunctionDef) -> None:
         self.name = node.name
-        self.args = node.args.args
-        self.returns = node.returns
+        self.args = []
+        self.returns = []
         self.docstring = ast.get_docstring(node)
+        self.get_function_head(node)
+
+    def get_function_head(self, node: ast.FunctionDef) -> None:
+        for argument in node.args.args:
+            self.args.append(self.FunctionArgument(argument))
+        self.returns = self.FunctionReturn(node.returns)
 
     def to_markdown(self, depth) -> str:
         pre = "#" * depth
