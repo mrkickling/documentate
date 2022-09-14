@@ -1,32 +1,27 @@
-{% include 'header.html' %}
-{% set curr_module = module %}
-{% set curr_class = c %}
-
-    <div id="{{c.name}}" class="class">
-        <h2>
-            class {{c.name}}
-            {% if c.bases %}
-                    ({% for base in c.bases %}
+<div id="{{class.name}}" class="class">
+      <h2>
+            class {{class.name}}
+            {% if class.bases %}
+                  ({% for base in class.bases %}
                         {{base.id}}
                         {% if not loop.last %}
                         , 
                         {% endif %}
-                    {% endfor %})
+                  {% endfor %})
             {% endif %}
-        </h2>
+      </h2>
 
-        <p>
-            {{c.docstring}}
-        </p>
+      <p>
+            {{class.docstring}}
+      </p>
 
-        {% for variable in c.class_variables %}
+      {% for variable in class.class_variables %}
             {{variable.name}}
             : {{variable.type}}
-        {% endfor %}
-        
-        {% for function in c.methods %}
+      {% endfor %}
+      
+      {% for function in class.methods %}
             {% include 'function.html' %}
-        {% endfor %}
-    </div>
+      {% endfor %}
 
-{% include 'footer.html' %}
+</div>
