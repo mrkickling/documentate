@@ -12,12 +12,7 @@ class Node:
     more easily be used in this project to produce human readable documentation.
     """
 
-    @abstractmethod
-    def to_markdown(self, depth) -> str:
-        pass
-
-    def print(self) -> None:
-        print(self.to_markdown(1))
+    pass
 
 
 class Module(Node):
@@ -38,15 +33,6 @@ class Module(Node):
             if isinstance(node, ast.ClassDef):
                 c = Class(node)
                 self.classes.append(c)
-
-    def to_markdown(self, depth) -> str:
-        pre = "#" * depth
-        result = ""
-        result += pre + " Module " + self.name + "\n" * 2
-        result += pre + "# Classes" + "\n"
-        for c in self.classes:
-            result += c.to_markdown(depth + 2)
-        return result + "\n"
 
 
 class Class(Node):
@@ -80,19 +66,6 @@ class Class(Node):
             if isinstance(node, ast.AnnAssign):
                 class_variable = self.ClassVariable(node)
                 self.class_variables.append(class_variable)
-
-    def to_markdown(self, depth) -> str:
-        pre = "#" * depth
-        result = "\n"
-        result += pre + " Class " + self.name + "\n"
-        result += "based on " + str(self.bases) + "\n"
-        if self.docstring:
-            result += self.docstring + "\n"
-        result += "\n\n"
-        result += pre + "# Methods" + "\n\n"
-        for method in self.methods:
-            result += method.to_markdown(depth + 2)
-        return result
 
 
 class Function(Node):
@@ -138,19 +111,3 @@ class Function(Node):
         for argument in node.args.args:
             self.args.append(self.FunctionArgument(argument))
         self.returns = self.FunctionReturn(node.returns)
-
-    def to_markdown(self, depth) -> str:
-        pre = "#" * depth
-        result = ""
-        result += pre + " Function: " + self.name + "\n\n"
-        result += " **Arguments**: "
-        for arg in self.args:
-            result += (arg.arg) + ", "
-        if self.docstring:
-            result += "\n" + self.docstring + "\n"
-        result += "**Returns**: "
-        if self.returns:
-            result += self.returns.id + "\n"
-        else:
-            result += " unknown" + "\n"
-        return result + "\n"
