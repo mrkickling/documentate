@@ -2,15 +2,15 @@ import os
 import glob
 import ast
 from models import Module
-from jinja2 import Environment, PackageLoader, select_autoescape
+from jinja2 import Environment, PackageLoader
 
 
 class DocumentateHandler:
-    def __init__(self, in_dir, out_dir):
+    def __init__(self, in_dir, out_dir, template_name="default"):
         self.in_dir = in_dir
         self.out_dir = out_dir
         self.modules = []
-        templateLoader = PackageLoader("templates", "default")
+        templateLoader = PackageLoader("templates", template_name)
         self.env = Environment(loader=templateLoader)
         self.parse_modules()
 

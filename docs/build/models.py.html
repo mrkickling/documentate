@@ -1,0 +1,301 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>models.py</title>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+    <h2>Modules</h2>
+    <ul>
+        
+            <li><a href="handler.py.html">handler.py</a></li>
+            
+        
+            <li><a href="models.py.html">models.py</a></li>
+            
+                <ul>
+                
+                    <li>
+                    <a href="#Node">
+                    Node
+                    </a>
+                    </li>
+                
+                    <li>
+                    <a href="#Module">
+                    Module
+                    </a>
+                    </li>
+                
+                    <li>
+                    <a href="#Class">
+                    Class
+                    </a>
+                    </li>
+                
+                    <li>
+                    <a href="#Function">
+                    Function
+                    </a>
+                    </li>
+                
+                </ul>
+            
+        
+            <li><a href="__init__.py.html">__init__.py</a></li>
+            
+        
+            <li><a href="__main__.py.html">__main__.py</a></li>
+            
+        
+    </ul>
+    <h2>Developer documentation</h2>
+</div>
+        <main>
+            <h1>models.py</h1>
+            
+                models.py contains all classes that are used to store all parts of a python module
+            
+            
+                <div id="Node" class="class">
+      <h2>
+            class Node
+            
+      </h2>
+
+      <p>
+            An abstract class used for all parts of a python program (like in ast) but than can
+more easily be used in this project to produce human readable documentation.
+      </p>
+
+      
+      
+      
+
+</div>   
+            
+                <div id="Module" class="class">
+      <h2>
+            class Module
+            
+                  (
+                        Node
+                        
+                  )
+            
+      </h2>
+
+      <p>
+            A Module is the same as a file in python. This class represents a module
+and includes its name, its docstring, its variables, functions and classes
+      </p>
+
+      
+      
+      
+            <div class="function">
+    <span class="function-name">__init__
+        (
+            
+              self 
+              
+              , 
+              
+            
+              name 
+              
+              , 
+              
+            
+              node 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+            <div class="function">
+    <span class="function-name">get_module_body
+        (
+            
+              self 
+              
+              , 
+              
+            
+              body 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+
+</div>   
+            
+                <div id="Class" class="class">
+      <h2>
+            class Class
+            
+                  (
+                        Node
+                        
+                  )
+            
+      </h2>
+
+      <p>
+            This class represents a class in the python language and contains
+a name, bases (inheritance), methods and docstring.
+      </p>
+
+      
+      
+      
+            <div class="function">
+    <span class="function-name">__init__
+        (
+            
+              self 
+              
+              , 
+              
+            
+              node : ast 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+            <div class="function">
+    <span class="function-name">get_class_body
+        (
+            
+              self 
+              
+              , 
+              
+            
+              body 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+
+</div>   
+            
+                <div id="Function" class="class">
+      <h2>
+            class Function
+            
+                  (
+                        Node
+                        
+                  )
+            
+      </h2>
+
+      <p>
+            This class is used to represent a python function or method
+(which is just a function in a class in python). It has a name,
+potentially arguments, a docstring and return type.
+      </p>
+
+      
+      
+      
+            <div class="function">
+    <span class="function-name">__init__
+        (
+            
+              self 
+              
+              , 
+              
+            
+              node : ast 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+            <div class="function">
+    <span class="function-name">get_function_head
+        (
+            
+              self 
+              
+              , 
+              
+            
+              node : ast 
+              
+            
+        )
+         ➝ 
+        None
+        </span>
+</div>
+      
+
+</div>   
+            
+        </main>
+    </div>
+    <style>
+        * {
+    box-sizing: border-box;
+}
+
+.nav {
+    width: 30%;
+    float: left;
+}
+
+.nav ul li a {
+    color:black;
+}
+
+main {
+    width: 50%;
+    float:left;
+}
+
+.container {
+    margin-bottom: 50px;
+    display: block;
+    overflow: auto;
+}
+
+.class {
+    border-left: 4px solid grey;
+    padding-left: 10px;
+}
+
+.function-name {
+    font-family: 'Courier New', Courier, monospace
+}
+    </style>
+</body>
+</html>
+    </ul>    
+</body>
+</html>
